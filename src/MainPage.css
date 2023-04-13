@@ -1,0 +1,18 @@
+  .FontLogo{
+    font-size: 4rem;
+    font-style: inherit;
+    font-weight: 800;
+    font-family: sans-serif;
+  }
+
+  .FontNFCWallet{
+    font-family: system-ui;
+    font-size: 2rem;
+    margin-top: 1.2rem;
+  }
+
+  .FontTronChain{
+    font-family: system-ui;
+    font-size: 1rem;
+    margin-top: 1rem;
+  }

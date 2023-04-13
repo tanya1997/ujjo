@@ -1,0 +1,169 @@
+.App {
+  text-align: center;
+  height: 100%; /* fallback for Js load */
+}
+  
+
+.ScanninghWritingText{
+  font-size: 1.4rem;
+  font-weight: 800;
+  font-family: system-ui;
+}
+
+.MainContainer {
+  display: flex; /* or inline-flex */
+  flex-direction: column;
+}
+
+.ChildContainer {
+  width: 100%;
+  display: flex; /* or inline-flex */
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.AppWithoutPadding {
+  text-align: center;
+}
+
+.adm-input-element {
+
+    font-size: 12px !important
+}
+
+
+.HorizontalAlignment {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 30px
+}
+
+.HorizontalCreateCard {
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 30px
+}
+
+.card {
+  margin: 20px;
+  padding: 10px 2px;
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.VerticalAlignment {
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 30px
+}
+
+.HorizontalAlignmentDLG {
+  display: flex;
+  align-items: center;
+}
+
+.inputBorder{
+  border: 1px solid #cacaca;
+   font-size: 12px !important;
+  border-radius: 4px;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-size: small;
+
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.inputBorderTextArea{
+  border: 1px solid #333333;
+  font-size: 12px;
+  border-radius: 4px;
+  width: 60%;
+}
+
+.inputBorderTextAreaGray{
+  border: 1px solid #d6d6d6;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  font-size: 12px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.RightAlign{
+  margin-left: auto; 
+  margin-right: 0;
+}
+
+.TopArea {
+  text-align: center;
+  background-color: #000000;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  padding: 20px;
+}
+
+.button_tron{
+  align-self: flex-end;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --main-color: #ec039f;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  box-sizing: border-box;
+  margin: 0;
+  overflow: visible;
+  -webkit-appearance: button;
+  height: 49px;
+  width: 180px;
+  cursor: pointer;
+  background: var(--main-color);
+  border: none;
+  border-radius: 54px;
+  color: #fff;
+  font-family: Blender Pro;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 100%;
+  min-height: 53px;
+  padding: 0 25px;
+  text-transform: uppercase;
+}
+
+.image_card{
+  width: 60%;
+  margin: 20px;
+  max-width: 300px;
+}
