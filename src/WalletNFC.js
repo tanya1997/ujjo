@@ -1,8 +1,7 @@
-import React, { useCallback, useContext, useEffect, useState, useMemo, useRef } from 'react';
+import React, { useEffect, useState,  useRef } from 'react';
 import {useLocation} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
-import { Button, Dialog, Space, Toast, Divider,  Dropdown, Radio,List,  Input, TextArea, Collapse, Image  } from 'antd-mobile'
-import { CopyOutlined} from '@ant-design/icons';
+import { Button, Dialog, List,  Input,  Collapse, Image  } from 'antd-mobile'
 import WalletAddress from './WalletAddress';
 import Account from './Account';
 export default function WalletNFC () {
@@ -16,34 +15,24 @@ export default function WalletNFC () {
     const [arrayToken, setArrayToken] = useState([]);
     const [currentContract, setCurrentContract] = useState({});
     const [currentType, setCurrentType] = useState("");
-    //const [arrayContract, setArrayContract] = useState([]);
 
     let refDialogWalletAddress = useRef("");
     let refDialogAmount = useRef("");
     const [dialogVisible, setDialogVisible] = useState(false);
     var arrayContract = location.state.contracts;
-    var privateKey = location.state.wallet;//"ad7d4a67e61529bd1d07d6dd68f13a3e2308e0813e9ddc6ba9cc2281ae6fa002";
+    var privateKey = location.state.wallet;
 
 
     useEffect(() => {
       childRef.current.updateApi()
-    //  setArrayContract(location.state.contracts)
-   //   setArrayContract(["TXLAQ63Xg1NAzckPwKHvzw7CSEmLMEqcdj"])
     });
-
-
-
 
     async function sendTRX(){
       console.log("type")
       console.log(currentType)
       childRef.current.sendTokens(currentType, refDialogWalletAddress.current, refDialogAmount.current, currentContract)
       setDialogVisible(false)
-      /* console.log(refDialogWalletAddress.current);
-      
-       var txn = tronWeb.trx.sendTransaction(refDialogWalletAddress.current, refDialogAmount.current * 1000000, privateKey);
-       console.log(txn)*/
-    }//"TVDGpn4hCSzJ5nkHPLetk8KQBtwaTppnkr"
+    }  
 
     function backToHome(){
         navigate('/');
@@ -64,14 +53,12 @@ export default function WalletNFC () {
       setDialogVisible(false)
     }
         
-
    return (
     <div className={"App MainContainer"}>  
         <div className='TopArea'>Ujjo</div>
         <Account ref={childRef} generateWalletPrivateKey={privateKey} setGenerateBalance={setWalletBalance}
         arrayContract={arrayContract} setArrayToken={setArrayToken} generateWalletAddress={walletAddress} 
-        setGenerateWalletAddress={setWalletAddress}
-/>
+        setGenerateWalletAddress={setWalletAddress}/>
       <div className={"ChildContainer MainContainer"} style={{flexGrow: 4}} >
         <div className={"AppWithoutPadding ChildContainer MainContainer"}>
             <WalletAddress className={"ChildContainer"} generateWalletAddress={walletAddress} generateWalletPrivateKey={privateKey}/>
@@ -135,6 +122,3 @@ export default function WalletNFC () {
     </div>
    );
 }             
-//<button onClick={sendTRX}>receive</button>
-//<button onClick={showTronweb}>show</button>      
-//<div>{location.state.wallet}</div>

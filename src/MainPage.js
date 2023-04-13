@@ -1,6 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { ActionsContext } from './context';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import './MainPage.css';
 import {useNavigate} from 'react-router-dom';
@@ -15,7 +13,6 @@ function MainPage() {
 
     function goToCreateCard(){
         navigate('/create_wallet',{state:{wallet:null}});
-        //navigate('/login_wallet')
     }
 
     return (

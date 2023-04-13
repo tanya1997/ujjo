@@ -5,7 +5,6 @@ import NFCScaner from './NFCScaner';
 import WalletNFC from './WalletNFC';
 import MainPage from './MainPage'
 import CreateWallet from './CreateWallet'
-import LoginWallet from './LoginWallet';
 import NFCWriter from './NFCWriter';
 
 const Main = () => {
@@ -15,7 +14,6 @@ const Main = () => {
       <Route exact path='/nfc_scaner' element={<NFCScaner/>}></Route>
       <Route exact path='/wallet' element={<WalletNFC/>}></Route>
       <Route exact path='/create_wallet' element={<CreateWallet/>}></Route>
-      <Route exact path='/login_wallet' element={<LoginWallet/>}></Route>
       <Route exact path='/nfc_writer' element={<NFCWriter/>}></Route>
     </Routes>
   );

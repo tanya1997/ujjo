@@ -1,10 +1,10 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState } from 'react';
+
 import './App.css';
 import {useNavigate, useLocation} from 'react-router-dom';
 import circles from './circles.svg';
 import NFCWarningDlg from './NFCWarningDlg';
-import {Dialog, Button} from 'antd-mobile'
+import {Dialog} from 'antd-mobile'
 
 function NFCWriter() {
 
@@ -32,10 +32,7 @@ function NFCWriter() {
   
   const onWrite = async(message) => {
           try {
-            //abortController.abort();
               ndef = new window.NDEFReader();
-              // This line will avoid showing the native NFC UI reader
-             // await ndef.scan();
               await ndef.write({records: [{ recordType: "text", data: message }]}, {signal});
               Dialog.alert({
                 confirmText:'ok',
@@ -49,7 +46,6 @@ function NFCWriter() {
                     <div>Data written successfully!</div>                                 
                 </>)
               })
-            //  alert(`Value Saved!`);
               
           } catch (error) {
             };

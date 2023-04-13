@@ -1,8 +1,7 @@
-import React, { useCallback, useContext, useEffect, useState, useMemo, useRef } from 'react';
-import {useLocation} from 'react-router-dom';
+import React, { useEffect, useState, useRef } from 'react';
 import {useNavigate} from 'react-router-dom';
 import crc32 from 'crc/crc32';
-import { Button, Dialog, Space, Toast, Divider, Dropdown, Radio, Input, Checkbox, Form, Card, TextArea, Collapse, Image, List  } from 'antd-mobile'
+import { Button, Dialog, Input, Checkbox, Card, Collapse, Image, List  } from 'antd-mobile'
 import PasswordForm from './PasswordForm';
 import Account from './Account';
 import WalletAddress from './WalletAddress';
@@ -37,7 +36,6 @@ export default function CreateWallet () {
       setVisibleErrorDlg(true)
      }
       childRef.current.updateApi()
-      //console.log(generateWalletAddress);
 
     }, [contractItem, generateWalletPrivateKey, generateWalletAddress]);
 
@@ -66,12 +64,6 @@ export default function CreateWallet () {
       console.log(arrayContractJSON)
 
       const dataMsg = "{\"private_key\": \""+ key +"\", \"crc\": \""+ crc +"\", \"secure\": \""+ secure +"\",\"contracts\": "+ arrayContractJSON +"}"
-    /*  console.log("22")
-      //var encrypted = CryptoJS.AES.encrypt("ad7d4a67e61529bd1d07d6dd68f13a3e2308e0813e9ddc6ba9cc2281ae6fa002", "1234").toString();
-      var decrypted = CryptoJS.AES.decrypt("U2FsdGVkX19m16ZDhsdKtUUMtFlB8k4H6hVf53fwb2meM4lcP8zFwwNK1u23Qj+wH7+mnXTbc6YefURcWwfrLAr/w54DTL8yvAc742ddlTlTNObqKxyDuyL+G7ur81QX", "1234");
-      //console.log(encrypted)
-      console.log(decrypted.toString(CryptoJS.enc.Utf8))*/
-      //console.log(decodeURIComponent(decrypted.replace(/\s+/g, '').replace(/[0-9a-f]{2}/g, '%$&')))
       navigate('/nfc_writer',{state:{wallet:dataMsg}});
     }
 

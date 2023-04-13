@@ -111,7 +111,6 @@ const onReading = ({message, serialNumber}) => {
 };
 
 function checkCard(s_key, s_crc, contracts, s_pwd){
-    //setMessage(myObject.private_key);
     var key = s_key;
     if (s_pwd != null){
         var decrypted = CryptoJS.AES.decrypt(key, s_pwd);
@@ -119,15 +118,14 @@ function checkCard(s_key, s_crc, contracts, s_pwd){
     }
     var crc = crc32(key).toString(16);
     if (s_crc == crc){
-        //setDebugMessage(key)
         abortController.abort();
         navigate('/wallet',{state:{wallet:key, contracts:contracts}});
     }else{
-        showErrorDlg(s_crc + "  " + crc + " "+ key);
+        showErrorDlg(/*s_crc + "  " + crc + " "+ key*/);
     }
 }
 
-function showErrorDlg(content){
+function showErrorDlg(){
     Dialog.alert({
             title: 'Card',
             content: 'Cannot read card ',// + content,
@@ -140,9 +138,6 @@ function backToHome(){
     navigate('/');
 }
 
-function debugWallet(){
-    navigate('/wallet',{state:{wallet:"ad7d4a67e61529bd1d07d6dd68f13a3e2308e0813e9ddc6ba9cc2281ae6fa002"}});
-}
 
 return (
     <div className="App MainContainer">  
@@ -161,5 +156,5 @@ return (
     </div>
   );
 }
-//<div className='ChildContainer'><button onClick={debugWallet}>Debug Wallet</button></div>
+
 export default NFCScaner;

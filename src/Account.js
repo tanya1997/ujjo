@@ -1,5 +1,5 @@
-import React, { useCallback, useContext, useEffect, useState, useMemo, useRef, useImperativeHandle, forwardRef } from 'react';
-import { Button, Dialog, Space, Toast, Divider,  Dropdown, Radio, Input, TextArea, Collapse  } from 'antd-mobile'
+import React, { useEffect, useState, useImperativeHandle, forwardRef } from 'react';
+import { Button, Dialog, Space, Toast, Dropdown, Radio, TextArea  } from 'antd-mobile'
 
 function Account (props, ref) {
 
@@ -13,13 +13,10 @@ function Account (props, ref) {
     var eventServer = new HttpProvider(apiLink);
     var privateKey = '';
     var tronWeb = new TronWeb(fullNode,solidityNode,eventServer,privateKey);
-   // let interval = null
-
-   useEffect(() => {
+    useEffect(() => {
    
     const interval = setInterval(() => {
       changeApi(apiLink)
-     // showTronweb()
     }, 5000);
     return () => clearInterval(interval);
 
@@ -98,15 +95,14 @@ function Account (props, ref) {
         },
           
         async  generateWallet(){
-              //  var tx = await tronWeb.createAccount()
-                
-                var testAddress = "TAAsUq1gfebzHfWfdMcbnAcSiejbJcatjp"//tx.address.base58//
-                var testPrivateKey = "ad7d4a67e61529bd1d07d6dd68f13a3e2308e0813e9ddc6ba9cc2281ae6fa002"//tx.privateKey//
+          var tx = await tronWeb.createAccount()
+          var testAddress = tx.address.base58//
+          var testPrivateKey = tx.privateKey
                
-                return [testPrivateKey, testAddress]
+          return [testPrivateKey, testAddress]
 
                 
-          },
+        },
 
         updateApi(){
           changeApi(apiLink)
@@ -136,8 +132,6 @@ function Account (props, ref) {
         index //uint256 index
         ).call();
         const tokenid = tronWeb.toDecimal(token_id)
-        //console.log("token_id")
-        //console.log(tokenid)
         let tokenURI = await contract.tokenURI (
           tokenid //uint256 tokenid
             ).call();
@@ -182,14 +176,8 @@ function Account (props, ref) {
       };
 
       async function showTronweb(){
-        /* if (generateWalletPrivateKey == null){
-           return;
-         }*/
-         //console.log("generateWalletPrivateKey")
-       //  console.log(props.generateWalletPrivateKey)
          var address = tronWeb.address.fromPrivateKey(props.generateWalletPrivateKey)
          props.setGenerateWalletAddress(address)
-        // console.log(address)
          tronWeb.trx.getBalance(address).then(result => {props.setGenerateBalance(result)})
    
          var tokenBalance = [];
@@ -216,17 +204,11 @@ function Account (props, ref) {
            var decimals = 0;
            try{
               decimals = await contract.decimals().call();
-              //console.log(decimals);
            }catch{
-            //console.log("precheck contract")
-            //console.log(result)
             const result_num = tronWeb.toDecimal(result)
             if (Number.isInteger(result_num) && result_num < 10 && result_num != 0){
-                //console.log("check contract")
                 for (let j = 0; j < result_num; j++) {
-                  //console.log("check contract0")
                   const trc_721 = await trc721_tokenURI(contractAddressTemp, j)
-                  //console.log(trc_721)
                   tokenArray.push(trc_721)
                 }
             }
@@ -234,10 +216,7 @@ function Account (props, ref) {
            }
    
            var bal = result / (10 ** decimals)
-           //console.log( bal);
-           
            const sym = await contract.symbol().call();
-           //console.log( sym);
            var resultBalance = {} 
            resultBalance.balance = bal;
            resultBalance.decimals = decimals;
