@@ -16,8 +16,12 @@ export default function WalletNFC () {
     const [currentContract, setCurrentContract] = useState({});
     const [currentType, setCurrentType] = useState("");
 
-    let refDialogWalletAddress = useRef("");
-    let refDialogAmount = useRef("");
+    const [dialogWalletAddress, setDlgWalletAddress] = useState({});
+    const [dialogAmount, setDlgAmount] = useState("");
+
+    //let refDialogWalletAddress = useRef("");
+    //let refDialogAmount = useRef("");
+    let refEmptyDlgFlag = useRef("");
     const [dialogVisible, setDialogVisible] = useState(false);
     var arrayContract = location.state.contracts;
     var privateKey = location.state.wallet;
@@ -25,12 +29,12 @@ export default function WalletNFC () {
 
     useEffect(() => {
       childRef.current.updateApi()
-    });
+    }, []);
 
     async function sendTRX(){
       console.log("type")
       console.log(currentType)
-      childRef.current.sendTokens(currentType, refDialogWalletAddress.current, refDialogAmount.current, currentContract)
+      childRef.current.sendTokens(currentType, dialogWalletAddress, dialogAmount, currentContract)
       setDialogVisible(false)
     }  
 
@@ -40,10 +44,15 @@ export default function WalletNFC () {
 
     function setVisibleDlgTransaction(value, type, id){
       if (id != null){
-        refDialogAmount.current = id
+        refEmptyDlgFlag.current = id
+        setDlgAmount(id)
       }else{
-        refDialogAmount.current = ""
+        refEmptyDlgFlag.current = ""
+      setDlgAmount("")
       }
+
+    //  refDialogWalletAddress.current = ""
+      setDlgWalletAddress("")
       setCurrentType(type)
       setCurrentContract(value)
       setDialogVisible(true)
@@ -97,18 +106,18 @@ export default function WalletNFC () {
         content ={ <div>
                     <div>
                       <div>wallet</div>
-                      <Input className='inputBorder'
+                      <Input className='inputBorder' value={dialogWalletAddress}
                         onChange={val => {
-                          refDialogWalletAddress.current = val;
+                          setDlgWalletAddress(val);
                         }}/>
                     </div>
                     
-                      { refDialogAmount.current == "" ? (
+                      { refEmptyDlgFlag.current == "" ? (
                        <div> 
                       <div>amount</div>
-                      <Input value={refDialogAmount.current} className='inputBorder'
+                      <Input  className='inputBorder' value={dialogAmount}
                         onChange={val => {
-                          refDialogAmount.current = val;
+                           setDlgAmount(val);
                         }}/>
                     </div>) : (<div></div>)
                       }

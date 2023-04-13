@@ -96,7 +96,7 @@ function Account (props, ref) {
           
         async  generateWallet(){
           var tx = await tronWeb.createAccount()
-          var testAddress = tx.address.base58//
+          var testAddress = tx.address.base58
           var testPrivateKey = tx.privateKey
                
           return [testPrivateKey, testAddress]
