@@ -12,6 +12,11 @@
     "browserify-zlib": "^0.2.0",
     "crc": "^4.3.2",
     "crypto-js": "^4.1.1",
+    "dotenv": "^16.0.3",
+    "dotenv-webpack": "^8.0.1",
+    "find-config": "^1.0.0",
+    "fs": "^0.0.1-security",
+    "path-browserify": "^1.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1",
@@ -42,6 +47,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   },
   "devDependencies": {
     "assert": "^2.0.0",

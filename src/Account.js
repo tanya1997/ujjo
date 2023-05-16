@@ -3,10 +3,14 @@ import { Button, Dialog, Space, Toast, Dropdown, Radio, TextArea  } from 'antd-m
 
 function Account (props, ref) {
 
-    const [network, setNetwork] = useState("Shasta Testnet");
-    const [apiLink, setApiLink] = useState("https://api.shasta.trongrid.io");
+    const [network, setNetwork] = useState("Mainnet");
+    const [apiLink, setApiLink] = useState("https://api.trongrid.io");
 
     const TronWeb = require('tronweb')
+    const dotenv = require('dotenv')
+    const path = require('path')
+    dotenv.config({path: require('find-config')('.env') }) 
+
     const HttpProvider = TronWeb.providers.HttpProvider;
     var fullNode = new HttpProvider(apiLink);
     var solidityNode = new HttpProvider(apiLink);
@@ -98,6 +102,7 @@ function Account (props, ref) {
           var tx = await tronWeb.createAccount()
           var testAddress = tx.address.base58
           var testPrivateKey = tx.privateKey
+          
                
           return [testPrivateKey, testAddress]
 
@@ -149,6 +154,10 @@ function Account (props, ref) {
       solidityNode = new HttpProvider(api);
       eventServer = new HttpProvider(api);
       tronWeb = new TronWeb(fullNode,solidityNode,eventServer,props.generateWalletPrivateKey);
+      if (api == "https://api.trongrid.io"){
+        console.log(process.env.REACT_APP_TRON_PRO_API_KEY)
+          tronWeb.setHeader({ "TRON-PRO-API-KEY": process.env.REACT_APP_TRON_PRO_API_KEY });
+      }
       showTronweb()
      
     }
@@ -237,13 +246,14 @@ function Account (props, ref) {
             <Dropdown style={{ background: "#f5f5f5" }}>
               <Dropdown.Item key='sorter' title={network}>
                 <div style={{ padding: 12}}>
-                  <Radio.Group onChange={onChange} defaultValue='Shasta Testnet'>
+                  <Radio.Group onChange={onChange} defaultValue='Mainnet'>
                     <Space direction='vertical' block>
-                      <Radio block value='Shasta Testnet'>Shasta Testnet
-                      </Radio>
                       <Radio block value='Mainnet'>
                         Mainnet
                       </Radio>
+                      <Radio block value='Shasta Testnet'>Shasta Testnet
+                      </Radio>
+                      
                       <Radio block value='Nile Testnet'>
                         Nile Testnet
                       </Radio>

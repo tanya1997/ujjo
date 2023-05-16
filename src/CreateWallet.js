@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import {useNavigate} from 'react-router-dom';
 import crc32 from 'crc/crc32';
-import { Button, Dialog, Input, Checkbox, Card, Collapse, Image, List  } from 'antd-mobile'
+import { Button, Dialog, Input, Checkbox, Card, Collapse, Image, List, TextArea  } from 'antd-mobile'
 import PasswordForm from './PasswordForm';
 import Account from './Account';
 import WalletAddress from './WalletAddress';
@@ -14,6 +14,10 @@ export default function CreateWallet () {
     const navigate = useNavigate();
 
     const [dlgErrormessage, setDlgErrorMessage] = useState('');
+    const [dialogImportVisible, setDialogImportVisible] = useState(false);
+
+    const [privateKeyImport, setPrivateKeyImportval] = useState("");
+
     const [visibleErrorDlg, setVisibleErrorDlg] = useState(false);
 
     const [checkboxProtectWallet, setCheckboxProtectWallet] = useState(false);
@@ -43,6 +47,10 @@ export default function CreateWallet () {
       const result = await childRef.current.generateWallet() 
       setGenerateWalletPrivateKey(result[0])
       setGenerateWalletAddress(result[1])
+    }
+
+    function importWallet(){
+      setDialogImportVisible(true)
     }
 
     function writeWallet(){
@@ -157,9 +165,38 @@ export default function CreateWallet () {
               
             }>
           </Dialog>
+
+          
           </div>: <div style={{justifyContent: "center", width: "auto" }} className='ChildContainer' >
             <div><button  className="button_tron" onClick={createWallet}>Create new Wallet</button></div>
+            <div><button  className="button_tron" style={{marginTop: "20px"}} onClick={importWallet}>Import wallet</button></div>
             <NFCWarningDlg visible={visibleErrorDlg} setVisible={setVisibleErrorDlg} message={dlgErrormessage}/>
+            
+            <Dialog visible={dialogImportVisible}  
+            title = 'New Asset'
+
+            content={ 
+              <div>
+                <TextArea placeholder=' Private Key' rows={4} className='AntTextArea'
+                  id="inputname"
+                  value={privateKeyImport}
+                
+                  onChange={val => {
+                    setPrivateKeyImportval(val);
+                  }}
+                />
+                <Button style={{marginTop: 10}} size='large' block onClick={()=>{
+                                                                                  setDialogImportVisible(false); 
+                                                                                  setGenerateWalletPrivateKey(privateKeyImport);
+                                                                                  } 
+                                                                                }>Import</Button>
+                <Button style={{marginTop: 10}} size='large' block onClick={()=>{
+                                                                                  setDialogImportVisible(false); 
+                                                                                }}>Close</Button>
+              </div>
+              
+            }>
+          </Dialog>
         </div>
         } 
                
