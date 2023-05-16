@@ -155,7 +155,7 @@ function Account (props, ref) {
       eventServer = new HttpProvider(api);
       tronWeb = new TronWeb(fullNode,solidityNode,eventServer,props.generateWalletPrivateKey);
       if (api == "https://api.trongrid.io"){
-        console.log(process.env.REACT_APP_TRON_PRO_API_KEY)
+        //console.log(process.env.REACT_APP_TRON_PRO_API_KEY)
           tronWeb.setHeader({ "TRON-PRO-API-KEY": process.env.REACT_APP_TRON_PRO_API_KEY });
       }
       showTronweb()
