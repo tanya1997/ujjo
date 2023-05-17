@@ -173,7 +173,7 @@ export default function CreateWallet () {
             <NFCWarningDlg visible={visibleErrorDlg} setVisible={setVisibleErrorDlg} message={dlgErrormessage}/>
             
             <Dialog visible={dialogImportVisible}  
-            title = 'New Asset'
+            title = 'Import wallet'
 
             content={ 
               <div>
